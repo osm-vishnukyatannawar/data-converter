@@ -106,7 +106,8 @@ If you see all the sources then you are now sure that all Athena linking happene
 SELECT * FROM rentpath_pdp Where rentpath_pdp.date = '2030_12_12' and source = 'apartments.com';
 ```
 
-Note> You don't have to concat the files before uploading. Simply dump all the files.
+> You don't have to concat the files before uploading. Simply dump all the files.
+
 
 **Now you are sure that data mapping happended properly.**
 
