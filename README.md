@@ -58,7 +58,7 @@ We need to do two sort of mapping for each website.
 
 **Before running**
 - Make sure that there is no dummy/sample json file in source directory.
-- Corss check that mappings object is fine.
+- Cross check that mappings object is fine.
 
 **Normalize PDP**
 ```sh
