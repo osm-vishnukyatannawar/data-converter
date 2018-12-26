@@ -18,6 +18,7 @@ npm i
 ## Download extractor data
 
 First download the extractor data and drop in the associated folder.
+
 i.e. https://github.com/vishnukyatannawar/data-converter/tree/master/source
 
 > Download the NDJSON format
@@ -52,6 +53,22 @@ We need to do two sort of mapping for each website.
   - PDP - https://console.aws.amazon.com/glue/home?region=us-east-1#table:name=rentpath_pdp;namespace=rentpath_collector
   - Marketsharing - https://console.aws.amazon.com/glue/home?region=us-east-1#table:name=rentpath_marketshare;namespace=rentpath_collector
 - Be very carefull while updating the mapping file.
+
+## Run the script
+
+**Before running**
+- Make sure that there is no dummy/sample json file in source directory.
+- Corss check that mappings object is fine.
+
+**Normalize PDP**
+```sh
+node pdp-converter.js
+```
+
+**Normalize Marketsharing**
+```sh
+node marketshare-map.js
+```
 
 
 
