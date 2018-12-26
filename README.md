@@ -70,6 +70,86 @@ node pdp-converter.js
 node marketshare-map.js
 ```
 
+> Note that destination folder should have the normalized the data.
+
+## Data Verification
+
+### PDP
+
+1. Create a dummy folder here with a valid date value
+
+https://s3.console.aws.amazon.com/s3/buckets/rentpath-results-prod/rentpath-pdp-collector-results/?region=us-east-1&tab=overview
+
+Example
+```sh
+date=2030_12_12
+```
+
+2. Upload one file of each website. (Since this is just a test)
+
+3. Go to Athena and run the following query (https://console.aws.amazon.com/athena/home?region=us-east-1#query/history/685eed0d-63e5-4b10-ac6a-1c3c869c58a4)
+```sql
+MSCK REPAIR TABLE rentpath_pdp;
+```
+> This is load the newly added partition
+
+4. Run the query to list all Distinct source
+```sql
+SELECT DISTINCT source FROM rentpath_pdp Where rentpath_pdp.date = '2030_12_12';
+```
+> Make sure to update the date as per your folder creation in step 1
+
+If you see all the sources then you are now sure that all Athena linking happened properly.
+
+5. Run the following query for each source to validate all columns mapped properly.
+```sql
+SELECT * FROM rentpath_pdp Where rentpath_pdp.date = '2030_12_12' and source = 'apartments.com';
+```
+
+Note> You don't have to concat the files before uploading. Simply dump all the files.
+
+**Now you are sure that data mapping happended properly.*
+
+### Market Sharing
+
+1. Go to the following directory
+
+https://s3.console.aws.amazon.com/s3/buckets/rentpath-results-prod/rentpath-marketshare-collector-results/?region=us-east-1&tab=overview
+
+2. Go to a specific source
+
+https://s3.console.aws.amazon.com/s3/buckets/rentpath-results-prod/rentpath-marketshare-collector-results/apartmentfinder.com/?region=us-east-1&tab=overview
+
+I picked apartmentfinder.com
+
+3. Upload apartmentfinder marketsharing file here. Delete any previous file if exists.
+
+4. In Athena we have table for each website (https://console.aws.amazon.com/athena/home?region=us-east-1#query/history/05965865-55ab-4e89-8004-29b66f71e5b1)
+
+```sql
+SELECT * FROM "rentpath_collector"."rentpath_marketshare_apartmentfinder" limit 10;
+```
+
+5. Repeat the above steps for each website.
+
+6. Once you confirm that mapping is done properly then simply upload files into respective folder. (Please delete old files else we will see duplicate records)
+
+## TODO
+
+- Need to update looker to convert few columns to number format. (Check with Vishnu)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   
