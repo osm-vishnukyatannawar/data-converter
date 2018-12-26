@@ -70,7 +70,7 @@ node pdp-converter.js
 node marketshare-map.js
 ```
 
-> Note that destination folder should have the normalized the data.
+> Note that destination folder should have the normalized data.
 
 ## Data Verification
 
