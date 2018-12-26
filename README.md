@@ -108,7 +108,7 @@ SELECT * FROM rentpath_pdp Where rentpath_pdp.date = '2030_12_12' and source = '
 
 Note> You don't have to concat the files before uploading. Simply dump all the files.
 
-**Now you are sure that data mapping happended properly.*
+**Now you are sure that data mapping happended properly.**
 
 ### Market Sharing
 
